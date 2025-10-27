@@ -20,7 +20,7 @@
                         <FontImageSource Size="{markups:OnScreenSize Default='50', ExtraLarge='80'}" Glyph="{x:Static helpers:MaterialDesign.Rewind10}" FontFamily="MaterialDesignIcons" />
                     </Button.ImageSource>
                 </Button>
-                <Label Text="{Binding TotalDistance, StringFormat='{0:F2} KM'}" FontSize="{markups:OnScreenSize Default='50', ExtraLarge='80'}" TextColor="Black" />
+                <Label Text="{Binding TotalDistance, StringFormat='{0:F3} KM'}" FontSize="{markups:OnScreenSize Default='50', ExtraLarge='80'}" TextColor="Black" />
                 <Button Command="{Binding IncrementDistanceCommand}">
                     <Button.ImageSource>
                         <FontImageSource Size="{markups:OnScreenSize Default='50', ExtraLarge='80'}" Glyph="{x:Static helpers:MaterialDesign.FastForward10}" FontFamily="MaterialDesignIcons" />
@@ -58,7 +58,7 @@
                 <FontImageSource Size="{markups:OnScreenSize Default='80', ExtraLarge='150'}" Glyph="{x:Static helpers:MaterialDesign.Pause}" FontFamily="MaterialDesignIcons" Color="White" />
             </Button.ImageSource>
         </Button>
-        <Button Grid.Row="1" Grid.Column="1" BackgroundColor="Black" TextColor="White" Command="{Binding StopCommand}">
+        <Button Grid.Row="1" Grid.Column="1" BackgroundColor="Black" TextColor="White" Clicked="StopButton_Clicked">
             <Button.ImageSource>
                 <FontImageSource Size="{markups:OnScreenSize Default='80', ExtraLarge='150'}" Glyph="{x:Static helpers:MaterialDesign.Stop}" FontFamily="MaterialDesignIcons" Color="White" />
             </Button.ImageSource>
