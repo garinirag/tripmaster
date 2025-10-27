@@ -1,0 +1,2 @@
+﻿public interface IMainThreadDispatcher { void Invoke(Action action); }
+public class MainThreadDispatcher : IMainThreadDispatcher { public void Invoke(Action action) => MainThread.BeginInvokeOnMainThread(action); }

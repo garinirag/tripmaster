@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:helpers="clr-namespace:TripMaster.Helpers"
+             xmlns:markups="clr-namespace:OnScreenSizeMarkup.Maui;assembly=OnScreenSizeMarkup.Maui"
+             x:Class="TripMaster.MainPage"
+             Title="TripMaster">
+    <ContentPage.Resources>
+        <Style TargetType="Label">
+            <Setter Property="HorizontalOptions" Value="Center" />
+            <Setter Property="VerticalOptions" Value="Center" />
+        </Style>
+    </ContentPage.Resources>
+    <Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*,*,*" ColumnSpacing="20" RowSpacing="20" Padding="5">
+        <StackLayout Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Vertical" VerticalOptions="Center">
+            <Label Text="TOTAL" FontSize="{markups:OnScreenSize Default='50', ExtraLarge='80'}" TextColor="Black" />
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10" Padding="20,10">
+                <Button Command="{Binding DecrementDistanceCommand}">
+                    <Button.ImageSource>
+                        <FontImageSource Size="{markups:OnScreenSize Default='50', ExtraLarge='80'}" Glyph="{x:Static helpers:MaterialDesign.Rewind10}" FontFamily="MaterialDesignIcons" />
+                    </Button.ImageSource>
+                </Button>
+                <Label Text="{Binding TotalDistance, StringFormat='{0:F2} KM'}" FontSize="{markups:OnScreenSize Default='50', ExtraLarge='80'}" TextColor="Black" />
+                <Button Command="{Binding IncrementDistanceCommand}">
+                    <Button.ImageSource>
+                        <FontImageSource Size="{markups:OnScreenSize Default='50', ExtraLarge='80'}" Glyph="{x:Static helpers:MaterialDesign.FastForward10}" FontFamily="MaterialDesignIcons" />
+                    </Button.ImageSource>
+                </Button>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                <Label Text="{x:Static helpers:MaterialDesign.TimerOutline}" FontFamily="MaterialDesignIcons" FontSize="{markups:OnScreenSize Default='30', ExtraLarge='50'}" TextColor="Black" />
+                <Label Text="{Binding TotalElapsedTime, StringFormat='{0:hh\\:mm\\:ss}'}" FontSize="{markups:OnScreenSize Default='30', ExtraLarge='50'}" TextColor="Black" />
+                <Label Text="{x:Static helpers:MaterialDesign.TimerOutline}" FontFamily="MaterialDesignIcons" FontSize="{markups:OnScreenSize Default='30', ExtraLarge='50'}" TextColor="Transparent" />
+            </StackLayout>
+        </StackLayout>
+        <StackLayout Grid.Row="0" Grid.Column="2" Grid.ColumnSpan="2" Orientation="Vertical" VerticalOptions="Center">
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                <Button Text="-" FontSize="{markups:OnScreenSize Default='50', ExtraLarge='80'}" FontAttributes="Bold" Command="{Binding DecrementStepCommand}" TextColor="White" />
+                <Label Text="{Binding CurrentStep, StringFormat='ETAPE {0:D3}'}" FontSize="{markups:OnScreenSize Default='50', ExtraLarge='80'}" TextColor="Black" FontAttributes="Bold" />
+                <Button Text="+" FontSize="{markups:OnScreenSize Default='50', ExtraLarge='80'}" FontAttributes="Bold" Command="{Binding IncrementStepCommand}" TextColor="White" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10" BackgroundColor="Yellow" Padding="20,10">
+                <Label Text="{Binding PartialDistance, StringFormat='{0:F3} KM'}" FontSize="{markups:OnScreenSize Default='50', ExtraLarge='80'}" TextColor="Black" FontAttributes="Bold" />
+            </StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="10">
+                <Label Text="{x:Static helpers:MaterialDesign.TimerOutline}" FontFamily="MaterialDesignIcons" FontSize="{markups:OnScreenSize Default='30', ExtraLarge='50'}" TextColor="Black"></Label>
+                <Label Text="{Binding PartialElapsedTime, StringFormat='{0:hh\\:mm\\:ss}'}" FontSize="{markups:OnScreenSize Default='30', ExtraLarge='50'}" TextColor="Black" />
+                <Label Text="{x:Static helpers:MaterialDesign.TimerOutline}" FontFamily="MaterialDesignIcons" FontSize="{markups:OnScreenSize Default='30', ExtraLarge='50'}" TextColor="Transparent"></Label>
+            </StackLayout>
+        </StackLayout>
+        <Button Grid.Row="1" Grid.Column="0" BackgroundColor="Green" TextColor="White" Command="{Binding StartCommand}" IsVisible="{Binding IsNotRunning}">
+            <Button.ImageSource>
+                <FontImageSource Size="{markups:OnScreenSize Default='80', ExtraLarge='150'}" Glyph="{x:Static helpers:MaterialDesign.Play}" FontFamily="MaterialDesignIcons" Color="White" />
+            </Button.ImageSource>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="0" BackgroundColor="DarkOrange" TextColor="White" Command="{Binding PauseCommand}" IsVisible="{Binding IsRunning}">
+            <Button.ImageSource>
+                <FontImageSource Size="{markups:OnScreenSize Default='80', ExtraLarge='150'}" Glyph="{x:Static helpers:MaterialDesign.Pause}" FontFamily="MaterialDesignIcons" Color="White" />
+            </Button.ImageSource>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="1" BackgroundColor="Black" TextColor="White" Command="{Binding StopCommand}">
+            <Button.ImageSource>
+                <FontImageSource Size="{markups:OnScreenSize Default='80', ExtraLarge='150'}" Glyph="{x:Static helpers:MaterialDesign.Stop}" FontFamily="MaterialDesignIcons" Color="White" />
+            </Button.ImageSource>
+        </Button>
+        <Button Grid.Row="1" Grid.Column="2" Grid.ColumnSpan="2" BackgroundColor="BlueViolet" TextColor="White" Command="{Binding NextStepCommand}">
+            <Button.ImageSource>
+                <FontImageSource Size="{markups:OnScreenSize Default='80', ExtraLarge='150'}" Glyph="{x:Static helpers:MaterialDesign.SkipForward}" FontFamily="MaterialDesignIcons" Color="White" />
+            </Button.ImageSource>
+        </Button>
+    </Grid>
+</ContentPage>
